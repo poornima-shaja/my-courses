@@ -1,0 +1,55 @@
+import Dependencies
+import mysql.connector as db
+import bcrypt
+from tkinter import *
+root = Tk()
+
+def Insertrecord():
+    get_username=e1.get()
+    get_password=e2.get().encode()
+
+    salt=bcrypt.gensalt()
+    hashed_password=bcrypt.hashpw(get_password,salt)
+
+    mydb=db.connect(host="localhost",username="root",password="root")
+    cur=mydb.cursor()
+    query='''create database if not exists cryptography;'''
+    cur.execute(query)
+    mydb.close()
+
+    mydb=db.connect(host="localhost",username="root",password="root",database="cryptography")
+    cur=mydb.cursor()
+    query='''create table if not exists user_info(id int primary key auto_increment,username varchar(50)not null,password varchar(150)not null);'''
+    cur.execute(query)
+    mydb.close()
+
+    mydb=db.connect(host="localhost",username="root",password="root",database="cryptography")
+    cur=mydb.cursor()
+    data=(get_username,hashed_password)
+    query='''insert into user_info(username,password)values(%s,%s)'''
+
+    cur.execute(query,data)
+    cur.execute("commit;")
+    mydb.close()
+    root.geometry("600x400")
+    root.title("Password Hashing Application")
+
+    l1=Label(root,text="Passwood Hashing Application:")
+    l1.place(x=90,y=50)
+
+    l2=Label(root,text="Enter Username:")
+    l2.place(x=50,y=150)
+
+    e1=Entry(root,width=30)
+    e1.place(x=150,y=190)
+
+    l3=Label(root,text="Enter Password:")
+    l3.place(x=50,y=190)
+
+    e2=Entry(root,width=30)
+    e2.place(x=150,y=190)
+
+    b1=Button(root,text="Submit",bg="blue",fg="white",command=Insertrecord)
+    b1.place(x=50,y=230)
+
+    root.mainloop()

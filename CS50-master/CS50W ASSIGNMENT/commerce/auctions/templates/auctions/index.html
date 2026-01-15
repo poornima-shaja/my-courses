@@ -1,0 +1,48 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% for listing in listings %}
+        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+    
+    <ul>
+       <li> {{listing.id}} <br>
+        User Name: {{listing.owner}} <br>
+       Title: {{listing.title}} <br>
+        Decsription: {{listing.description}} <br>
+        <img src = "{{listing.image}}" height = 250 width = 250> <br>
+        Amount: ₹{{listing.amount}}</li> <br>
+        
+    </ul>
+    
+        {% if user.is_authenticated %}
+        <a href ="{% url 'bid' listing.id %}">To bid click here</a>
+        <a href ="{% url 'comments' listing.id %}">Comments</a>
+
+        {% if user in listing.watchlist.all %}
+        <a href ="{% url 'watchlist_remove' listing.id %}">Remove Watchlist</a>
+        {% else %}
+        <a href ="{% url 'watchlist_add' listing.id %}">Add Watchlist</a>
+        {% endif %}
+
+        {% endif %}
+
+
+
+
+
+        {% if user == listing.owner %}
+        <a href ="{% url 'owner_user' listing.id %}">Click here to close the bid</a>
+         {{message}}
+    {% endif %}
+
+
+
+
+
+
+    {% endfor %}
+
+    
+    
+{% endblock %}

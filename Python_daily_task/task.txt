@@ -1,0 +1,34 @@
+Print Hello
+Name and Greet
+Check Even or Odd
+Check Largest of two number
+Check positive , negative or zero
+check Divisibility by both 3 and 5 number
+Check greater number from 3 input
+Check Prime Number
+Armstrong Number
+Factorial
+Reverse a Number
+Palindrome Checker
+Check perfect number
+Sum of Digits
+Count the number of digits in a number
+Find the Power of a Number
+GCD
+LCM
+Prime Numbers in Range
+Find the Square Root of a Number
+Area of a Triangle
+Simple Interest
+Kilos to miles conversion.
+Convert Celsius to Fahrenheit
+Convert Minutes into Seconds
+Swap Two Numbers (without using a third variable)
+Calculate the cube of a number
+Convert Hours and Minutes into Total Minutes
+Check the leap year
+Converts the days into hours, minutes and weeks to remaining toal
+Find Odd One Out in number
+Find the odd man out in string
+count the number of vovels in sting
+Fibonacci Series

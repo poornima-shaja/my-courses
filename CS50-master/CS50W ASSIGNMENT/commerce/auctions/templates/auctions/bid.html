@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Bid Listings</h2>
+    Title: {{listing.title}} <br>
+    <img src = "{{listing.image}}" height = 250 width = 250> <br>
+    Amount: ₹{{listing.amount}}</li> <br>
+    
+    <form action="{% url 'bid' listing.id %}" method="POST">
+        {% csrf_token %}
+        <label>Add your bid</label>
+    <input type="number" name="place_bid">Add your bid
+    <input type="submit">Submit
+    </form>
+
+{% if error %}
+<p style= "color: red">{{error}}</p>
+
+{% endif %}
+<h3>
+    Current Price: ₹{{listing.amount}} <br>
+    {% if highest_bid %}
+    Current highest Bid Amount: ₹{{highest_bid.bid_amount}} <br>
+    Current highest Bid Placed by: {{highest_bid.user.username}} <br>
+    {% endif %}
+
+    {% if not listing.is_active %}
+    <p style="color: grey;"><strong>This auction is closed.</strong></p>
+    {% if winner %}
+        <p style="color: green;"><strong>Congratulations! You`ve won this auction!</strong></p>
+        {% else %}
+        <p style="color: red;">This auction is closed. You did not win.</p>
+    {% endif %}
+{% endif %}
+</h3>
+{% endblock %}
+
+
+
+

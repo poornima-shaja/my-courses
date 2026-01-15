@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajagopal Saree Collections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="index.html">Rajagopal Saree Collections</a>
+    </div>
+
+  <div class="hamburger" id="hamburger">
+    &#9776; <!-- Unicode for ☰ -->
+  </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sarees">Sarees</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- WhatsApp Button -->
+    <div class="nav-action">
+      <a href="https://wa.me/919653149781" class="btn-whatsapp">Order on WhatsApp</a>
+    </div>
+  </nav>
+</header>
+
+  <main>
+    <!-- HOME SECTION -->
+    <section id="home">
+    <div class="home-container">
+    <h1>Rajagopal Saree Collections</h1>
+    <p>Traditional Sarees, Handpicked With Love</p>
+    <a href="#sarees" class="btn-home">View Collection</a>
+    </div>
+    </section>
+
+
+    <!-- SAREE SECTION -->
+    <section id="sarees">
+      <h2>Our Sarees</h2>
+      <div id="saree-container" class="saree-container"></div>
+    </section>
+      <!-- <div class="saree-card">
+    <img src="images/saree1.jpg" alt="Silk Saree">
+    <p class="code">S001</p>
+    <h3>Kanchipuram Silk Saree</h3>
+    <p class="price">₹4,999</p>
+    <a href="https://wa.me/919653149781?text=Hello%20I%20am%20interested%20in%20saree%20code%20S001%20priced%20at%20Rs.%204999.%20Please%20share%20more%20details." class="btn-enquire">Enquire on WhatsApp</a>
+  </div> -->
+
+    <!-- COLLECTIONS SECTION -->
+    <section id="collections">
+  <h2>Collections</h2>
+
+  <div class="filter-buttons">
+    <button data-category="All">All</button>
+    <button data-category="Silk">Silk</button>
+    <button data-category="Cotton">Cotton</button>
+    <button data-category="Wedding">Wedding</button>
+    <button data-category="Daily Wear">Daily Wear</button>
+  </div>
+
+  <div id="collection-container"></div>
+</section>
+
+<!-- 🔹 CATEGORY RESULT -->
+<section id="category-view">
+  <h2 id="category-title"></h2>
+  <div id="category-sarees" class="saree-container"></div>
+</section>
+
+    <!-- ABOUT US SECTION -->
+<section id="about">
+  <div class="about-container">
+
+    <div class="about-text">
+      <h2>Our Story</h2>
+      <h1>Tradition Woven with Trust</h1>
+
+      <p>
+        Rajagopal Sarees began as a small family-run shop with a simple belief —
+        beautiful sarees should carry tradition, quality, and honesty.
+        What started with a few handpicked pieces slowly grew into a trusted
+        name among generations of customers.
+      </p>
+
+      <p>
+        Every saree in our collection is carefully selected, keeping in mind
+        craftsmanship, fabric quality, and timeless elegance. From daily wear
+        cottons to grand wedding silks, our journey has always been guided by
+        customer trust and word-of-mouth love.
+      </p>
+
+      <p class="highlight">
+        Today, Rajagopal Sarees stands proud as a symbol of heritage,
+        dedication, and graceful fashion.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+   <!-- CONTACT SECTION -->
+<section id="contact">
+  <div class="contact-container">
+
+    <h2>Get in Touch</h2>
+    <h1>We’d Love to Hear from You</h1>
+
+    <p class="contact-text">
+      Whether you are interested in a partnership, have a business enquiry,
+      or simply want to know more about our saree collections, feel free to
+      reach out. We believe good conversations build lasting relationships.
+    </p>
+
+    <div class="contact-actions">
+      <a href="https://wa.me/919653149781"
+         target="_blank"
+         class="contact-btn whatsapp">
+        Chat on WhatsApp
+      </a>
+
+      <a href="mailto:rajagopalsarees@gmail.com"
+         class="contact-btn email">
+        Send an Email
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+   </main>
+    <!-- FOOTER SECTION -->
+    <footer>
+  <div class="footer-links">
+    <h4>Connect with us:</h4>
+    <a href="" target="_blank">Instagram</a> |
+    <a href="" target="_blank">Facebook</a>  |
+    <a href="">Email</a>
+  </div>
+  <p>&copy; 2026 Rajagopal Saree Collections</p>
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAlmuKDv6UdOZ9fKHhfXemB1JGY_iFjF3g",
+    authDomain: "rajagopal-sarees.firebaseapp.com",
+    projectId: "rajagopal-sarees",
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+<script src="main.js"></script>
+</body>
+
+
+</body>
+</html>

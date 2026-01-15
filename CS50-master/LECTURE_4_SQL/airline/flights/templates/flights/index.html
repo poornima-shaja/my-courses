@@ -1,0 +1,17 @@
+{% extends "flights/layout.html" %}
+
+    {%block body%}
+    <h1>Flights</h1>
+    <ul>
+        {%for flight in flights%}
+    
+    <li>
+    <a href = "{% url 'flight' flight.id %}">
+        Flights {{flight.id}}: From {{flight.origin}} to {{flight.destination}} at {{flight.duration}} Minutes
+    </a>
+    </li>
+        {% endfor %}
+    </ul>
+     
+   {% endblock %}
+

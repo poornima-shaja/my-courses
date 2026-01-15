@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colours</title>
+</head>
+<script>
+    // document.addEventListener("DOMContentLoaded", function(){
+    //     document.querySelectorAll("button").forEach(function(button){
+    //         button.onclick = function(){
+    //             document.querySelector("#hello").style.color = button.dataset.color;
+    //         }
+    //     })
+    // })
+     document.addEventListener("DOMContentLoaded", function(){
+        document.querySelector("select").onmouseover = function(){
+            document.querySelector("#hello").style.color = this.value;
+        }
+     })
+
+</script>
+<body>
+    <h1 id="hello">Hello</h1>
+    <select name="colours" id="colours">
+        <option value="Black">Black</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        </select>
+
+</body>
+</html>

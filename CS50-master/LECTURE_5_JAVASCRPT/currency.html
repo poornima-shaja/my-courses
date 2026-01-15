@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURRENCY</title>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){  
+        document.querySelector('form').onsubmit = function() {
+            fetch('https://v6.exchangerate-api.com/v6/a186548072e9bdf76723b12d/latest/USD')
+                .then(response => response.json())
+                .then(data => {
+                    const currency = document.querySelector('#currency').value;
+                    const rate = data.rates[currency];
+                    if (rate !== undefined){
+                        document.querySelector('#result').innerHTML = `1 USD os equal to ${rate.toFixed(3)} to ${currency}`;
+                    } else{
+                    document.querySelector('#result').innerHTML = `Invalid Currency!!`;
+                    };
+
+                    return false;
+                }
+            });
+</script>
+<body>
+    <input type="text" placeholder="CURRENCY" id="currency">
+    <input type="submit" value="Convert">
+    <div id="result">
+
+    </div>
+</body>
+</html>

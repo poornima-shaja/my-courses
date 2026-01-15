@@ -1,0 +1,1 @@
+AWS stands for Amazon Web Services. It is a comprehensive cloud computing platform provided by Amazon that offers a wide range of on-demand services such as computing power, storage, and databases. AWS allows businesses to scale and manage their IT resources efficiently without the need for upfront investments in physical hardware.

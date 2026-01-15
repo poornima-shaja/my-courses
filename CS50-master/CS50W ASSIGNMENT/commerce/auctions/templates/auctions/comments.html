@@ -1,0 +1,22 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Comments for: {{ listing.title }}</h2>
+<form action="{% url 'comments' listing.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control" type="text" name="content" placeholder="Add your opinion">
+        </div>
+        <button type="submit">Post</button>
+    </form>
+
+{% for comment in comments %}
+<hr>
+         {{comment.user.username}}:
+         {{comment.content}}
+
+    {% empty %}
+         No comments yet
+    {% endfor %}
+
+{% endblock %}
