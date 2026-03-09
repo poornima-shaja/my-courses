@@ -1,0 +1,73 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Survey Form</title>
+  </head>
+
+  <body>
+    <h1 id="title">Survey</h1>
+    <p id="description">Hello guyyyy</p>
+    <form id="survey-form">
+
+      <label id="name-label" for="name">1. Enter your Name: </label>
+      <input type="text" id="name" placeholder="Enter your Name" required>
+
+      <br>
+
+      <label id="email-label" for="email">2. Enter your Email: </label>
+      <input id="email" pattern="^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}$" type="email" placeholder="Enter your Email" required>
+
+      <br>
+
+      <label id="number-label" for="number">3. Enter your Number: </label>
+      <input id="number" pattern="[789][0-9]{9}" type="number" min="10" max="12" placeholder="Enter your Phone Number" required>
+
+      <br>
+    <label id="dropdown-label" for="number">4. Select your class: </label>
+    <select id="dropdown">
+      <option>TY</option>
+      <option>SY</option>
+      <option>FY</option>
+    </select>
+
+    <br>
+
+    <label>5. Select your gender: </label>
+      <br>
+    <label id="male" for="male">Male</label>
+    <input type="radio" id="male" name="gender" value="male">
+    
+    <label id="male" for="female">Female</label>
+    <input type="radio" id="Female" name="gender" value="female">
+
+    <br>
+
+    <label id="name-label" for="name">6. Choose your course: </label>
+    <br>
+      <input type="checkbox" id="html" value="html">
+      <label id="html-label" for="html">HTML </label>
+
+    <br>
+      <input type="checkbox" id="css" value="css">
+      <label id="css-label" for="css">CSS</label>
+
+    <br>
+      <input type="checkbox" id="javascript" value="javascript">
+      <label id="javascript-label" for="javascript">Javascript</label>
+      
+      <br>
+
+      <label id="textarea-label" for="textarea">7. Your Queries!</label>
+      <textarea id="textarea"></textarea>
+      <br>
+      <input id="submit" type="submit">
+    </form>
+    
+  </body>
+</html>
+
+** end of index.html **
+

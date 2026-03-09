@@ -1,0 +1,125 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+<body>
+<main id="main-doc">
+
+<section class="main-section" id="Introduction">
+  <header id="Introduction">Introduction</header>
+  <p>intro</p>
+  <p>python</p>
+  <code>button</code>
+  <li>knbsddjk</li>
+</section>
+
+
+
+<section class="main-section" id="Python">
+  <header id="Python">Python</header>
+  <p>lnovfn</p>
+  <p>sdnvfsn</p>
+  <code>button</code>
+  <li>knbsddjk</li>
+</section>
+
+
+<section class="main-section" id="Framework">
+  <header id="Framework">Framework</header>
+<p>nesdkfneksldfncl</p>
+  <p>nsddokfeswko</p>
+  <code>button</code>
+  <li>knbsddjk</li>
+</section>
+
+
+<section class="main-section" id="Data_Science">
+  <header id="Data_Science">Data Science</header> <p>nesdkfneksldfncl</p>
+  <p>nsddokfeswko</p>
+  <code>button</code>
+  <li>kjfjn</li>
+</section>
+
+
+<section class="main-section" id="Deep_Learning">
+  <header id="Deep_Learning">Deep Learning</header>
+   <p>intro</p>
+  <p>python</p>
+  <code>button</code>
+  <li>kjksebnejk</li>
+</section>
+
+
+</main>
+<nav id="navbar">
+  <header> PYTHON DOCUMENTATION </header>
+
+ 
+  <a href ="#Introduction" class="nav-link">Introduction<a/>
+  <a href ="#Python" class="nav-link">Python<a/>
+  <a href ="#Framework" class="nav-link">Framework<a/>
+  <a href ="#Data_Science" class="nav-link">Data Science<a/>
+  <a href ="#Deep_Learning" class="nav-link">Deep Learning<a/>
+   
+</nav>
+</body>
+</html>
+
+** end of index.html **
+
+** start of styles.css **
+
+/* Smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  main { 
+    scroll-behavior: smooth;
+  }
+}
+
+/* General resets */
+html {
+  scroll-padding-top: 80px; /* space for fixed header */
+}
+
+nav {
+  width: 100%;
+}
+
+nav a {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+}
+
+a {
+  color: #dfdfe2;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+
+/* Main padding */
+main {
+  padding-top: 100px; /* header height + small gap */
+}
+
+/* Section styling */
+section {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 60px auto;
+  padding: 20px;
+  min-height: calc(100vh - 100px); /* full page minus header */
+}
+
+** end of styles.css **
+
