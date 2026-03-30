@@ -1,0 +1,1 @@
+bts_name_list =["jimin", "jungkook", "taehyung", "rm", "jin", "jhope", "yoongo"]

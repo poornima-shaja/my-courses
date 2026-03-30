@@ -1,0 +1,17 @@
+$color : red;
+$licolor: orange;
+
+ul{
+    font-size: 22px;
+    color: $color;
+
+}
+
+ol{
+    font-size: 24px;
+    color: $color;
+}
+
+li{
+    color: $licolor;
+}

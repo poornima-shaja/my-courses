@@ -1,0 +1,1 @@
+A RESTful API is an interface that allows two computer systems to exchange information securely over the internet. It follows the principles of Representational State Transfer (REST), an architectural style that defines a set of constraints for creating web services. RESTful APIs are widely used because they are simple, flexible, and efficient.

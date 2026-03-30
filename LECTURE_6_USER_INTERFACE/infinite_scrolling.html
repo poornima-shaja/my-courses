@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scrolling</title>
+</head>
+  <style>
+    .post {
+      padding: 10px;
+      margin: 5px;
+      background: #f4f4f4;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
+ <script>
+    let counter = 1;
+    const quantity = 20;
+
+    // Load initial posts
+    document.addEventListener('DOMContentLoaded', load);
+
+    // Detect scroll to bottom
+    window.onscroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        load();
+      }
+    };
+
+    // Simulated load function (no server)
+    function load() {
+      const start = counter;
+      const end = start + quantity - 1;
+      counter = end + 1;
+
+      // Simulate "fetched" posts
+      const posts = [];
+      for (let i = start; i <= end; i++) {
+        posts.push(`Post number ${i}`);
+      }
+
+      posts.forEach(add_posts);
+    }
+
+    // Add post to the page
+    function add_posts(content) {
+      const post = document.createElement('div');
+      post.className = 'post';
+      post.innerHTML = content;
+      document.querySelector('#posts').append(post);
+    }
+  </script>
+<body>
+    <div id="posts">
+</div>
+</body>
+</html>
+    

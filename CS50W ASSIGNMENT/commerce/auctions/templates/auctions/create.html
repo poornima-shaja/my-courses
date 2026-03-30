@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+<form action = "{% url 'create' %}" method ="POST">
+    {% csrf_token %}
+    <label for = "title">Enter the Title of the list: </label>
+    <input type = "text" name="title" placeholder = "Title"><br>
+
+    <label for = "description">Enter the Describtion of the list: </label>
+    <textarea name="description" placeholder = "Description"></textarea><br>
+
+    <label for = "image">Insert the Image of the list: </label>
+    <input type = "url" name="image" placeholder = "Image"><br>
+
+    <label for = "category">Enter the Category of the list: </label>
+    <select name="category" placeholder = "Category"><br>
+        <option>Select</option>
+        <option>Merch</option>
+        <option>Toys</option>
+        <option>Land</option>
+        <option>Painting</option>
+        <option>Jewery</option>
+        <option>Furnature</option>
+    </select>
+
+    <label for = "amount">Enter the Starting Bid of the list: </label>
+    <input type = "number" name="amount" placeholder = "Starting Bid"><br>
+
+    <label for = "submit">Submit the List</label>
+    <input type = "submit" name="submit">
+</form>
+        {% endblock %}
