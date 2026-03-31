@@ -19,7 +19,7 @@ A collection of my learning journey — Harvard CS50W, Python practice, and web 
 An AI-powered sentiment analysis web app built with Django.
 - Sentiment analysis, keyword extraction, and text summarization
 - Deployed on Render
-- [Live Demo]([https://your-live-link-here](https://sentix-ai-2b7w.onrender.com/))
+- [Live Demo](https://your-live-link-here](https://sentix-ai-2b7w.onrender.com/)
 
 ---
 
