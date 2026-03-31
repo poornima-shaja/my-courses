@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentix AI Suite</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'processor/_favicon.png' %}2">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'processor/_favicon.png' %}">
+    <style>
+        body { background-color: #f8f9fa; }
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            min-height: 100vh;
+            background: #000000;
+            color: white;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,.75);
+            margin-bottom: 10px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background: #343a40;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        @media (max-width: 768px) {
+    #sidebar {
+        position: absolute;
+        z-index: 1000;
+    }
+}
+.logo {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.6);
+}
+    </style>
+</head>
+
+<body>
+
+<div class="d-flex">
+
+    <!-- SIDEBAR -->
+     <button class="btn btn-dark d-md-none me-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar">
+    <i class="bi bi-list"></i>
+</button>
+    <nav id="sidebar" class="p-3 collapse d-md-block">
+        <a href="{% url 'index' %}">
+        <img src="{% static 'processor/main_logo.png' %}" class="logo"></a>
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+                <a href="{% url 'index' %}" class="nav-link active">
+                    <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{% url 'analyze' %}" class="nav-link">
+                    <i class="bi bi-bar-chart-line me-2"></i> Sentiment
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{% url 'summarize' %}" class="nav-link">
+                    <i class="bi bi-justify-left me-2"></i> Summarizer
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{% url 'extract_keyword' %}" class="nav-link">
+                    <i class="bi bi-pen me-2"></i> Extract Keyword
+                </a>
+            </li>
+
+            <hr>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link text-danger" onclick="confirmLogout()">
+                        <i class="bi bi-box-arrow-left me-2"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                    {% csrf_token %}
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link">
+                        Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'register' %}" class="nav-link">
+                        Register
+                    </a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <nav class="navbar navbar-light bg-white rounded mb-4 shadow-sm p-3">
+            <div class="container-fluid">
+
+                <span class="navbar-text fw-bold">
+                    {% if user.is_authenticated %}
+                        Welcome, {{ user.username }}
+                    {% else %}
+                        Welcome, Guest
+                    {% endif %}
+                </span>
+
+                <div>
+                    {% if user.is_authenticated %}
+                        <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=random"
+                             class="rounded-circle" width="35">
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-sm me-2">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Register</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- PAGE CONTENT -->
+        {% block body %}
+        {% endblock %}
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function confirmLogout() {
+    if (confirm("Are you sure you want to log out of Sentix AI?")) {
+        document.getElementById('logout-form').submit();
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% extends "processor/layout.html" %}
+
+{% block body %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h5>Abstractive Summary Generation </h5>
+            <form id="analyze-form" method="POST">
+                {% csrf_token %}
+                <textarea class="form-control mb-3" name="summarize_text" rows="8" placeholder="Paste your lyrics or text here..."></textarea>
+                <button type="submit" class="btn btn-primary">Generate Summary</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+    <div class="card p-4" id="result-card">
+        <h5>Summary Result</h5>
+        {% if summary %}
+            <div id="summary-result">
+                <p id="summary-text" class="border p-3 bg-light rounded">{{ summary }}</p>
+                <button class="btn btn-sm btn-outline-secondary mt-2" onclick="copyText()">Copy Summary</button>
+            </div>
+        {% else %}
+            <div id="result-placeholder" class="text-center text-muted py-5">
+                <i class="bi bi-card-text" style="font-size: 3rem;"></i>
+                <p>Paste long text to generate summary</p>
+            </div>
+        {% endif %}
+
+        <div id="loading-spinner" class="text-center py-5" style="display:none;">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2">AI is thinking...</p>
+        </div>
+    </div>
+</div>
+</div> 
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelector('#analyze-form').onsubmit = function(e){
+        e.preventDefault();
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        document.getElementById('result-placeholder').style.display = 'none';
+        document.getElementById('loading-spinner').style.display = 'block';
+
+        fetch('/summarize/', {
+            method: "POST",
+            headers: {'X-CSRFToken': csrftoken},
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('loading-spinner').style.display = 'none';
+
+            const oldResult = document.getElementById('dynamic-result');
+            if (oldResult) oldResult.remove();
+
+            const resultDiv = document.createElement("div");
+            resultDiv.id = "dynamic-result";
+
+            resultDiv.innerHTML = `
+                <p class="border p-3 bg-light rounded">${data.summary}</p>
+                <button class="btn btn-sm btn-outline-secondary mt-2" onclick="copyText()">Copy Summary</button>
+                <br><br>
+                <a href="/details/${data.id}" class="btn btn-primary btn-sm">View Details</a>
+            `;
+
+            document.querySelector('#result-card').appendChild(resultDiv);
+        });
+    };
+
+});
+</script>
+{% endblock %}

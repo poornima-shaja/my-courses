@@ -1,0 +1,60 @@
+{% extends "processor/layout.html" %}
+
+{% block body %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h5>Analyze Text Emotion</h5>
+            <form id="analyze-form" method="POST">
+                {% csrf_token %}
+                <textarea class="form-control mb-3" name="analyze_text" rows="8" placeholder="Paste your lyrics or text here..."></textarea>
+                <button type="submit" class="btn btn-primary">Run Analysis</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h5>Quick Results</h5>
+            <div id="result-placeholder" class="text-center text-muted py-5">
+                <i class="bi bi-graph-up" style="font-size: 3rem;"></i>
+                <p>Run analysis to see data</p>
+            </div>
+            <canvas id="sentimentChart" style="display:none;"></canvas>
+        </div>
+    </div>  
+</div>
+<script>
+    let chart;
+    document.querySelector('#analyze-form').onsubmit = function(e){
+        e.preventDefault();
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    fetch('/analyze/',{
+        method:"POST",
+        headers:{'X-CSRFToken': csrftoken},
+        body: new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('#result-placeholder').style.display = 'none';
+        const ctx = document.getElementById('sentimentChart');
+        ctx.style.display = 'block';
+
+        if (chart) {
+            chart.destroy();
+        }
+
+        chart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ['Positive', 'Negative', 'Neutral'],
+                datasets: [{
+                    data: [data.pos, data.neg, data.neu],
+                    backgroundColor: ['#198754', '#dc3545', '#6c757d']
+                }]
+            }
+        });
+    });
+};
+</script>
+{% endblock %}

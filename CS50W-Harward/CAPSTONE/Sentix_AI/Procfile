@@ -1,0 +1,1 @@
+web: gunicorn sentix_suite.wsgi:application

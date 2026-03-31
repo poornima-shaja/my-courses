@@ -1,0 +1,85 @@
+{% extends "processor/layout.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h5>Extract Keyword</h5>
+            <form id="analyze-form" method="POST">
+                {% csrf_token %}
+                <textarea class="form-control mb-3" name="keyword_text" rows="8" placeholder="Paste your text here..."></textarea>
+                <button type="submit" class="btn btn-primary">Extract Keyword</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">                       
+            <h5>Extracted Keywords</h5>
+
+            <!-- Placeholder -->
+            <div id="result-placeholder" class="text-center text-muted py-5">
+                <i class="bi bi-card-text" style="font-size: 3rem;"></i>
+                <p>Paste text to Extract Keyword</p>
+            </div>
+
+            <!-- Spinner (INSIDE card) ✅ -->
+            <div id="loading-spinner" class="text-center py-5" style="display:none;">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2 text-muted">Extracting...</p>
+            </div>
+
+            <!-- Result (INSIDE card) ✅ -->
+            <div id="keyword-result" style="display:none;">
+                <ul id="keyword-list" class="list-group mb-3"></ul>
+                <button class="btn btn-sm btn-outline-secondary mt-2" onclick="copyKeywords()">Copy</button>
+                <br><br>
+                <a id="detail-link" href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+
+        </div>                                        
+    </div>
+</div>
+
+<script>
+document.querySelector('#analyze-form').onsubmit = function(e) {
+    e.preventDefault();
+
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    document.getElementById('result-placeholder').style.display = 'none';
+    document.getElementById('keyword-result').style.display = 'none';
+    document.getElementById('loading-spinner').style.display = 'block';
+
+    fetch('/extract_keyword/', {
+        method: "POST",
+        headers: { 'X-CSRFToken': csrftoken },
+        body: new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('loading-spinner').style.display = 'none';
+
+        const keywordList = document.getElementById('keyword-list');
+        keywordList.innerHTML = '';
+
+        data.keywords.forEach(word => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = `🔑 ${word}`;
+            keywordList.appendChild(li);
+        });
+
+        document.getElementById('detail-link').href = `/details/${data.id}`;
+        document.getElementById('keyword-result').style.display = 'block';
+    });
+};
+
+function copyKeywords() {
+    const items = document.querySelectorAll('#keyword-list li');
+    const text = Array.from(items).map(li => li.innerText).join('\n');
+    navigator.clipboard.writeText(text);
+    alert('Keywords copied!');
+}
+</script>
+{% endblock %}

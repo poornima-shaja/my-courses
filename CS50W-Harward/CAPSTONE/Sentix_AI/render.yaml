@@ -1,0 +1,22 @@
+databases
+  - name sentix-db
+    plan free
+    databaseName sentix_suite
+    user sentix_suite
+
+services
+  - type web
+    plan free
+    name sentix_suite
+    runtime python
+    buildCommand '.build.sh'
+    startCommand 'python -m gunicorn sentix_suite.asgiapplication -k uvicorn.workers.UvicornWorker'
+    envVars
+      - key DATABASE_URL
+        fromDatabase
+          name sentix-db
+          property connectionString
+      - key SECRET_KEY
+        generateValue true
+      - key WEB_CONCURRENCY
+        value 4
